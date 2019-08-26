@@ -19,7 +19,7 @@ public class TeacherController {
         model.addAttribute("teacherTitle", Title.values());
         model.addAttribute("teacher",new Teacher());
 
-        return"teacher/add";
+        return"teacher/addTeacher";
     }
 
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:object="${teacher}">
+
+    <div th:class="field">
+        <label th:for="title">Title</label>
+            <span th:errors="*{title}"></span>
+                <div th:class="control">
+                    <div th:class="select">
+                        <select  th:field="*{title}" required>
+                            <option value="">Title</option>
+                            <!--  teacherTitle was the name of the key-value pair that holds all of the values for the title selections -->
+                            <option th:each="title: ${teacherTitle}"
+                                    th:text="${title.prefix}" th:value="${title}">
+                            </option>
+                        </select>
+                    </div>
+            </div>
+
+    </div>
+
+    <div th:class="field">
+        <label th:for="teacherFirstName">First Name</label>
+            <span th:errors="*{teacherFirstName}"></span>
+            <div th:class="control">
+                <input th:field="*{teacherFirstName}">
+            </div>
+    </div>
+
+    <div th:class="field">
+        <label th:for="teacherMiddleInitial">Middle Intial</label>
+        <span th:errors="*{teacherMiddleInitial}"></span>
+        <div th:class="control">
+            <input th:field="*{teacherMiddleInitial}">
+        </div>
+    </div>
+
+    <div th:class="field">
+        <label th:for="teacherLastName">Last Name</label>
+        <span th:errors="*{teacherLastName}"></span>
+        <div th:class="control">
+            <input th:field="*{teacherLastName}">
+        </div>
+    </div>
+    <button>Submit</button>
+</form>
+
+</body>
+</html>
