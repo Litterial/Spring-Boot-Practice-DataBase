@@ -37,12 +37,14 @@ public class TeacherController {
     }
 
     @RequestMapping(value="add", method = RequestMethod.POST)
-    public String submitTeacher (@Valid @ModelAttribute("teacher") Teacher teacher, Errors err)
+    public String submitTeacher (@Valid Teacher teacher, Errors err)
     {
+        System.out.println("TeacherController");
         if (err.hasErrors())
         {
             return "teacher/addTeacher";
         }
+
 
         System.out.println(teacher);
         teacherService.createTeacher(teacher);

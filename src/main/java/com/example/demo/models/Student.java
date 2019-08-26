@@ -22,7 +22,7 @@ public class Student {
     private String studentLastName;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name ="teacher_Id")
     private Teacher teacherID;
 
     public int getStudentID() {

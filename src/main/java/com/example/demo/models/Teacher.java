@@ -3,6 +3,7 @@ package com.example.demo.models;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.List;
+
 @Entity
 public class Teacher {
     @Id
@@ -28,12 +29,13 @@ public class Teacher {
 
 
     public Teacher() {}
+
     public int getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(int id) {
-        teacherId = id;
+    public void setTeacherId(int teacherId) {
+        this.teacherId = teacherId;
     }
 
     public Title getTitle() {
@@ -48,24 +50,24 @@ public class Teacher {
         return teacherFirstName;
     }
 
-    public void setTeacherFirstName(String firstName) {
-        this.teacherFirstName = firstName;
+    public void setTeacherFirstName(String teacherFirstName) {
+        this.teacherFirstName = teacherFirstName;
     }
 
     public String getTeacherMiddleInitial() {
         return teacherMiddleInitial;
     }
 
-    public void setTeacherMiddleInitial(String middleInitial) {
-        this.teacherMiddleInitial = middleInitial;
+    public void setTeacherMiddleInitial(String teacherMiddleInitial) {
+        this.teacherMiddleInitial = teacherMiddleInitial;
     }
 
-    public String getTeacherLastName(){
-        return this.teacherLastName;
+    public String getTeacherLastName() {
+        return teacherLastName;
     }
 
-    public void setTeacherLastName(String lastName) {
-        this.teacherLastName = lastName;
+    public void setTeacherLastName(String teacherLastName) {
+        this.teacherLastName = teacherLastName;
     }
 
     public List<Student> getStudents() {
@@ -75,5 +77,4 @@ public class Teacher {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
-
 }
