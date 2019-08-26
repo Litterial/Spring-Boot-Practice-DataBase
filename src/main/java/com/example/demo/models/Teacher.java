@@ -26,6 +26,8 @@ public class Teacher {
     @OneToMany(mappedBy = "teacherID", cascade = CascadeType.ALL)
     private List<Student> students;
 
+
+    public Teacher() {}
     public int getTeacherId() {
         return teacherId;
     }
@@ -59,11 +61,11 @@ public class Teacher {
     }
 
     public String getTeacherLastName(){
-        return this.teacherFirstName;
+        return this.teacherLastName;
     }
 
     public void setTeacherLastName(String lastName) {
-        this.teacherLastName = teacherLastName;
+        this.teacherLastName = lastName;
     }
 
     public List<Student> getStudents() {
@@ -73,4 +75,5 @@ public class Teacher {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
+
 }
