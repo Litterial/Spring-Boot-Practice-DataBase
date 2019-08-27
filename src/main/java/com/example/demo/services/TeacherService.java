@@ -31,4 +31,9 @@ public class TeacherService {
 
     }
 
+    public Boolean existTeacher(int id)
+    {
+        return(teacherRepo.existsById(id));
+    }
+
 }

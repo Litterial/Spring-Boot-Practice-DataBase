@@ -31,8 +31,11 @@ public class StudentController {
 
     @RequestMapping(value="addStudent/{id}",method = RequestMethod.GET)
 
-    public String addStudent(Model model)
+    public String addStudent(Model model,@PathVariable int id)
     {
+        if(!teacherService.existTeacher(id))
+            return "teacher/noMatch";
+
         model.addAttribute("student",new Student());
         return "student/addStudent";
 
@@ -41,6 +44,9 @@ public class StudentController {
     @RequestMapping(value="addStudent/{id}",method = RequestMethod.POST)
     public String submitStudent(@Valid @ModelAttribute("student") Student newStudent, Errors err, @PathVariable int id)
     {
+        if(!teacherService.existTeacher(id))
+            return "teacher/noMatch";
+
         if (err.hasErrors())
             return "student/addStudent";
 
