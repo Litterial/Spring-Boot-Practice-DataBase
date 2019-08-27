@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import org.springframework.validation.Errors;
 
 @Controller
-@RequestMapping(value="teacher")
+@RequestMapping(value="teachers")
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;

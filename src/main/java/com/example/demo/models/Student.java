@@ -21,6 +21,7 @@ public class Student {
     @Size(min=2)
     private String studentLastName;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name ="teacher_Id")
     private Teacher teacherID;
