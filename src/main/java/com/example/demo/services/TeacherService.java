@@ -25,4 +25,10 @@ public class TeacherService {
 
     }
 
+    public Teacher findTeacher(int id)
+    {
+       return teacherRepo.getOne(id);
+
+    }
+
 }

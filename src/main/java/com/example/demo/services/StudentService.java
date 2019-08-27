@@ -12,15 +12,18 @@ import java.util.List;
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
+    private TeacherService teacherService;
 
     public List<Student> allStudents()
     {
         return studentRepository.findAll();
     }
 
-    public void createStudent(Student student,Teacher teacher)
+
+    public void createStudent(Student student, int id)
     {
-        student.setTeacherID(teacher);
+        Teacher teacherId= teacherService.findTeacher(id);
+        student.setTeacherID(teacherId);
         studentRepository.save(student);
     }
 
