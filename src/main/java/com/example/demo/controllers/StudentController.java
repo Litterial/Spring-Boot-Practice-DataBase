@@ -49,9 +49,11 @@ public class StudentController {
         if(!teacherService.existTeacher(id))
             return "teacher/noMatch";
 
-        if (err.hasErrors())
+        if (err.hasErrors()) {
+            System.out.println("There is an error");
             return "student/addStudent";
-
+        }
+        System.out.println("Create a student");
         studentService.createStudent(newStudent,id);
         return"student/success";
     }

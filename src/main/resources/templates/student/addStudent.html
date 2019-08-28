@@ -6,5 +6,21 @@
 </head>
 <body>
 <h1>Add Student</h1>
+<form th:method="POST" th:object="${student}">
+
+    <span th:errors="*{studentFirstName}"></span>
+    <label th:for="studentFirstName">First Name</label>
+    <input th:type="text" th:field="*{studentFirstName}"/>
+
+    <span th:errors="*{studentMiddleInitial}"></span>
+    <label th:for="studentMiddleInitial">Middle Initial</label>
+    <input th:type="text" th:field="*{studentMiddleInitial}"/>
+
+    <span th:errors="*{studentLastName}"></span>
+    <label th:for="studentLastName">Last Name</label>
+    <input th:type="text" th:field="*{studentLastName}"/>
+
+    <button> Submit</button>
+</form>
 </body>
 </html>

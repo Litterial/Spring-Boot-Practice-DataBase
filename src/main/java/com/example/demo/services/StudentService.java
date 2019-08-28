@@ -12,6 +12,7 @@ import java.util.List;
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
     private TeacherService teacherService;
 
     public List<Student> allStudents()
