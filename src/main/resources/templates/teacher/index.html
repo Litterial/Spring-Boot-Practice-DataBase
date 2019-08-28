@@ -7,12 +7,11 @@
 <body>
 <h1>List of Teachers</h1>
 <div th:each="teacher: ${teachers}">
-    <span th:text="${teacher.teacherId}"></span>
-    <span th:text="${teacher.title}"></span>
+    <span th:text="${teacher.title.prefix}"></span>
     <span th:text="${teacher.teacherFirstName}"></span>
     <span th:text="${teacher.teacherMiddleInitial}"></span>
     <span th:text="${teacher.teacherLastName}"></span>
-
+    <a th:href="@{'../students/addStudent/' + ${teacher.teacherId}}">Add Student</a>
 
 </div>
 

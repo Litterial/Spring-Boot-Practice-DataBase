@@ -26,6 +26,8 @@ public class Student {
     @JoinColumn(name ="teacher_Id")
     private Teacher teacherID;
 
+    public Student(){}
+
     public int getStudentID() {
         return studentID;
     }

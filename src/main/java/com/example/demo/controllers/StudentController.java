@@ -20,6 +20,7 @@ import javax.validation.Valid;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+    @Autowired
     private TeacherService teacherService;
 
     @RequestMapping(value="")
@@ -33,9 +34,10 @@ public class StudentController {
 
     public String addStudent(Model model,@PathVariable int id)
     {
-        if(!teacherService.existTeacher(id))
+        System.out.println(id);
+        if(!teacherService.existTeacher(id)) {
             return "teacher/noMatch";
-
+        }
         model.addAttribute("student",new Student());
         return "student/addStudent";
 
