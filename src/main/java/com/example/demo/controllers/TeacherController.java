@@ -4,6 +4,7 @@ import com.example.demo.models.Title;
 import com.example.demo.services.TeacherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,6 +51,16 @@ public class TeacherController {
         teacherService.createTeacher(teacher);
 
         return "teacher/success";
+    }
+    @RequestMapping(value="edit/{id}",method = RequestMethod.GET)
+    public String editTeacher (Model model, @PathVariable int id)
+    {
+        if (!teacherService.existTeacher(id))
+            return "teacher/noMatch";
+
+        model.addAttribute("teacher",teacherService.findTeacher(id));
+        model.addAttribute("allTitles",Title.values());
+        return "teacher/edit";
     }
 
 }

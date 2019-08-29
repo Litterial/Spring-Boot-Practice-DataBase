@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST" th:object="${teacher}">
+    <label th:for="title"></label>
+    <select required id="title" name="title">
+        <option th:each="titles :${allTitles}"
+                th:text="${titles.prefix}" th:value="${titles}" th:selected="${titles}==${teacher.title}">
+
+        </option>
+
+    </select>
+    <label th:for="teacherFirstName">First name</label>
+    <input th:field="${teacher.teacherFirstName}"/>
+
+    <label th:for="teacherMiddleInitial"> Middle Initial</label>
+    <input th:field="${teacher.teacherMiddleInitial}"/>
+
+    <label th:for="teacherLastName"></label>
+    <input th:field="${teacher.teacherLastName}"/>
+    <button>Submit</button>
+</form>
+</body>
+</html>
