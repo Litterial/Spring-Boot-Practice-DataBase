@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 
 import javax.jws.WebParam;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.validation.Errors;
 
@@ -53,7 +54,7 @@ public class TeacherController {
         return "teacher/success";
     }
     @RequestMapping(value="edit/{id}",method = RequestMethod.GET)
-    public String editTeacher (Model model, @PathVariable int id)
+    public String editTeacherForm (Model model, @PathVariable int id)
     {
         if (!teacherService.existTeacher(id))
             return "teacher/noMatch";
@@ -63,4 +64,26 @@ public class TeacherController {
         return "teacher/edit";
     }
 
+    @RequestMapping(value="edit/{id}",method = RequestMethod.POST)
+    public String submitEditTeacher(@Valid Teacher teacher, Errors err, Model model, @PathVariable int id, HttpServletRequest request)
+    {
+        if (!teacherService.existTeacher(id))
+            return "teacher/noMatch";
+
+        else if(err.hasErrors()) {
+            model.addAttribute("teacher",teacherService.findTeacher(id));
+            model.addAttribute("allTitles",Title.values());
+            return "teacher/edit";
+        }
+
+        else
+        {
+            String title=request.getParameter("title");
+            String first=request.getParameter("teacherFirstName");
+            String mid=request.getParameter("teacherMiddleInitial");
+            String last=request.getParameter("teacherLastName");
+            teacherService.updateTeacher(title,first,mid,last,id);
+        }
+        return "teacher/success";
+    }
 }

@@ -5,7 +5,7 @@ import com.example.demo.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.models.Teacher;
-
+import com.example.demo.models.Title;
 @Service
 public class TeacherService {
     @Autowired
@@ -36,6 +36,16 @@ public class TeacherService {
 
 //        System.out.println(teacherRepo.existsById(id));
         return teacherRepo.existsById(id);
+    }
+
+    public void updateTeacher(String title,String fName, String middle, String lName, int id)
+    {
+        Teacher teacher=findTeacher(id);
+        teacher.setTitle(Title.valueOf(title));
+        teacher.setTeacherFirstName(fName);
+        teacher.setTeacherMiddleInitial(middle);
+        teacher.setTeacherLastName(lName);
+        teacherRepo.save(teacher);
     }
 
 }
