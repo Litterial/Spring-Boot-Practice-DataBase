@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 @Controller
 @RequestMapping(value="students")
@@ -57,4 +58,16 @@ public class StudentController {
         studentService.createStudent(newStudent,id);
         return"student/success";
     }
+    @RequestMapping(value = "edit/{id}",method = RequestMethod.GET)
+    public String editStudentForm(Model model, @PathVariable int id)
+    {
+        if(!studentService.existStudent(id))
+            return "student/noMatch";
+
+        model.addAttribute("student",studentService.findStudent(id));
+        return"student/edit";
+    }
+
+
 }
+

@@ -18,11 +18,11 @@ public class Teacher {
     private String teacherFirstName;
 
     @Size(max=1,message="Please limit the field to 1 character")
-    @Pattern(regexp = "[A-z]",message = "Only alphabetical characters are allowed")
+    @Pattern(regexp = "[A-z]?",message = "Only alphabetical characters are allowed")
     private String teacherMiddleInitial;
 
-    @NotNull (message = "Last name must have a minimum length of 2 characters")
-    @Size(min=2)
+    @NotNull (message="Last name must not be empty")
+    @Size(min=2,message = "Last name must have a minimum length of 2 characters")
     private String teacherLastName;
 
     @OneToMany(mappedBy = "teacherID", cascade = CascadeType.ALL)
