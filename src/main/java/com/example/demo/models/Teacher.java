@@ -10,17 +10,18 @@ public class Teacher {
     @GeneratedValue
     private int teacherId;
 
-    @NotNull
+    @NotNull(message = "Title must not be empty")
     private Title title;
 
-    @NotNull
-    @Size(min=2)
+    @NotNull(message = "First name must not be empty")
+    @Size(min=2,message="First name must have a minimum length of 2 characters")
     private String teacherFirstName;
 
-    @Size(max=1)
+    @Size(max=1,message="Please limit the field to 1 character")
+    @Pattern(regexp = "[A-z]",message = "Only alphabetical characters are allowed")
     private String teacherMiddleInitial;
 
-    @NotNull
+    @NotNull (message = "Last name must have a minimum length of 2 characters")
     @Size(min=2)
     private String teacherLastName;
 
