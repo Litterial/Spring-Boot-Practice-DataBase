@@ -14,7 +14,7 @@ public class Student {
     @Size(min=2,message = "First name must not be empty")
     private String studentFirstName;
 
-    @Size(min=1,message = "Please limit the field to 1 character")
+    @Size(max=1,message = "Please limit the field to 1 character")
     @Pattern(regexp = "[A-z]?",message = "Only alphabetical characters are allowed")
     private String studentMiddleInitial;
 

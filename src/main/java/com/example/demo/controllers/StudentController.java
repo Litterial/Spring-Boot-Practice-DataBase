@@ -46,13 +46,14 @@ public class StudentController {
     }
 
     @RequestMapping(value="addStudent/{id}",method = RequestMethod.POST)
-    public String submitStudent(@Valid @ModelAttribute("student") Student newStudent, Errors err, @PathVariable int id, HttpServletRequest request)
+    public String submitStudent(@Valid @ModelAttribute("student") Student newStudent, Errors err, Model model, @PathVariable int id, HttpServletRequest request)
     {
         if(!teacherService.existTeacher(id))
             return "teacher/noMatch";
 
         if (err.hasErrors()) {
             System.out.println("There is an error");
+            model.addAttribute("student",newStudent);
             return "student/addStudent";
         }
         System.out.println("Create a student");
@@ -77,7 +78,7 @@ public class StudentController {
 
         else if (err.hasErrors())
         {
-            model.addAttribute("student",studentService.findStudent(id));
+            model.addAttribute("student",student);
             return"student/edit";
         }
         else

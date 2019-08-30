@@ -39,11 +39,14 @@ public class TeacherController {
     }
 
     @RequestMapping(value="add", method = RequestMethod.POST)
-    public String submitTeacher (@Valid Teacher teacher, Errors err)
+    public String submitTeacher (@Valid Teacher teacher, Errors err, Model model)
     {
         System.out.println("TeacherController");
         if (err.hasErrors())
         {
+            model.addAttribute("teacherTitle", Title.values());
+            model.addAttribute("teacher",teacher);
+
             return "teacher/addTeacher";
         }
 
@@ -71,7 +74,7 @@ public class TeacherController {
             return "teacher/noMatch";
 
         else if(err.hasErrors()) {
-            model.addAttribute("teacher",teacherService.findTeacher(id));
+            model.addAttribute("teacher",teacher);
             model.addAttribute("allTitles",Title.values());
             return "teacher/edit";
         }
