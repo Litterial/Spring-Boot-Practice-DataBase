@@ -38,4 +38,13 @@ public class StudentService {
     {
         return studentRepository.getOne(id);
     }
+
+    public void updateStudent(String fName, String middle, String lName, int id)
+    {
+        Student student=findStudent(id);
+        student.setStudentFirstName(fName);
+        student.setStudentMiddleInitial(middle);
+        student.setStudentLastName(lName);
+        studentRepository.save(student);
+    }
 }

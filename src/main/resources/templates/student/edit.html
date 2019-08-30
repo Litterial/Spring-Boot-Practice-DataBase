@@ -6,6 +6,24 @@
 </head>
 <body>
 <h1>edit student</h1>
+<form th:method="POST" th:object="${student}">
+    <div>
+        <span th:errors="*{studentFirstName}"></span>
+        <label th:for="studentFirstname">First Name</label>
+        <input th:type="text" th:field="*{studentFirstName}">
+    </div>
+    <div>
+        <span th:errors="*{studentMiddleInitial}"></span>
+        <label th:for="studentMiddleInitial">Middle Initial</label>
+        <input th:type="text" th:field="*{studentMiddleInitial}">
+    </div>
+    <div>
+        <span th:errors="*{studentLastName}"></span>
+        <label th:for="studentLastName">Last Name</label>
+        <input th:type="text" th:field="*{studentLastName}">
+    </div>
 
+    <button>Submit</button>
+</form>
 </body>
 </html>

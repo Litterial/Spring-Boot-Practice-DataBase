@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
@@ -45,7 +46,7 @@ public class StudentController {
     }
 
     @RequestMapping(value="addStudent/{id}",method = RequestMethod.POST)
-    public String submitStudent(@Valid @ModelAttribute("student") Student newStudent, Errors err, @PathVariable int id)
+    public String submitStudent(@Valid @ModelAttribute("student") Student newStudent, Errors err, @PathVariable int id, HttpServletRequest request)
     {
         if(!teacherService.existTeacher(id))
             return "teacher/noMatch";
@@ -68,6 +69,25 @@ public class StudentController {
         return"student/edit";
     }
 
+    @RequestMapping(value = "edit/{id}",method = RequestMethod.POST)
+    public String editSubmitEdit(@Valid Student student, Errors err,  Model model, @PathVariable int id, HttpServletRequest request)
+    {
+        if(!studentService.existStudent(id))
+            return "student/noMatch";
 
+        else if (err.hasErrors())
+        {
+            model.addAttribute("student",studentService.findStudent(id));
+            return"student/edit";
+        }
+        else
+        {
+            String first=request.getParameter("studentFirstName");
+            String mid=request.getParameter("studentMiddleInitial");
+            String last=request.getParameter("studentLastName");
+            studentService.updateStudent(first,mid,last,id);
+        }
+        return"student/success";
+    }
 }
 
