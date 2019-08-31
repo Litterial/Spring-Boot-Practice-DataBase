@@ -36,7 +36,7 @@ public class StudentController {
 
     public String addStudent(Model model,@PathVariable int id)
     {
-        System.out.println(id);
+        model.addAttribute("entry","teachers");
         if(!teacherService.existTeacher(id)) {
             return "teacher/noMatch";
         }
@@ -48,8 +48,9 @@ public class StudentController {
     @RequestMapping(value="addStudent/{id}",method = RequestMethod.POST)
     public String submitStudent(@Valid @ModelAttribute("student") Student newStudent, Errors err, Model model, @PathVariable int id, HttpServletRequest request)
     {
+        model.addAttribute("entry","teachers");
         if(!teacherService.existTeacher(id))
-            return "teacher/noMatch";
+            return "noMatch";
 
         if (err.hasErrors()) {
             System.out.println("There is an error");
@@ -63,8 +64,9 @@ public class StudentController {
     @RequestMapping(value = "edit/{id}",method = RequestMethod.GET)
     public String editStudentForm(Model model, @PathVariable int id)
     {
+        model.addAttribute("entry","students");
         if(!studentService.existStudent(id))
-            return "student/noMatch";
+            return "noMatch";
 
         model.addAttribute("student",studentService.findStudent(id));
         return"student/edit";
@@ -73,8 +75,9 @@ public class StudentController {
     @RequestMapping(value = "edit/{id}",method = RequestMethod.POST)
     public String editSubmitEdit(@Valid Student student, Errors err,  Model model, @PathVariable int id, HttpServletRequest request)
     {
+        model.addAttribute("entry","students");
         if(!studentService.existStudent(id))
-            return "student/noMatch";
+            return "noMatch";
 
         else if (err.hasErrors())
         {

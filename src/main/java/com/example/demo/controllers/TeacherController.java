@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 import com.example.demo.models.Teacher;
+import com.example.demo.models.Student;
 import com.example.demo.models.Title;
+import com.example.demo.services.StudentService;
 import com.example.demo.services.TeacherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +22,9 @@ import org.springframework.validation.Errors;
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private StudentService studentService;
+
 
 
     @RequestMapping(value="")
@@ -59,6 +64,7 @@ public class TeacherController {
     @RequestMapping(value="edit/{id}",method = RequestMethod.GET)
     public String editTeacherForm (Model model, @PathVariable int id)
     {
+        model.addAttribute("entry","teachers");
         if (!teacherService.existTeacher(id))
             return "teacher/noMatch";
 
@@ -70,8 +76,9 @@ public class TeacherController {
     @RequestMapping(value="edit/{id}",method = RequestMethod.POST)
     public String submitEditTeacher(@Valid Teacher teacher, Errors err, Model model, @PathVariable int id, HttpServletRequest request)
     {
+        model.addAttribute("entry","teachers");
         if (!teacherService.existTeacher(id))
-            return "teacher/noMatch";
+            return "noMatch";
 
         else if(err.hasErrors()) {
             model.addAttribute("teacher",teacher);
@@ -88,5 +95,17 @@ public class TeacherController {
             teacherService.updateTeacher(title,first,mid,last,id);
         }
         return "teacher/success";
+
+
+    }
+    @RequestMapping(value="delete/{id}",method = RequestMethod.GET)
+    public String deleteTeacher(Model model, @PathVariable int id) {
+        model.addAttribute("entry", "teachers");
+        if (!teacherService.existTeacher(id))
+            return "noMatch";
+        model.addAttribute("teacher",teacherService.findTeacher(id));
+        model.addAttribute("students",studentService.teacherStudents(id));
+
+        return "teacher/delete";
     }
 }

@@ -6,27 +6,35 @@
 </head>
 <body>
 <form method="POST" th:object="${teacher}">
-    <span th:errors="*{title}"></span>
-    <label th:for="title"></label>
+    <div>
+        <span th:errors="*{title}"></span>
+        <label th:for="title"></label>
 
-    <select required id="title" name="title">
-        <option th:each="titles :${allTitles}"
-                th:text="${titles.prefix}" th:value="${titles}" th:selected="${titles}==${teacher.title}">
+        <select required id="title" name="title">
+            <option th:each="titles :${allTitles}"
+                    th:text="${titles.prefix}" th:value="${titles}" th:selected="${titles}==${teacher.title}">
 
-        </option>
+            </option>
 
-    </select>
-    <span th:errors="*{teacherFirstName}"></span>
-    <label th:for="teacherFirstName">First name</label>
-    <input th:field="${teacher.teacherFirstName}"/>
+        </select>
+    </div>
+    <div>
+        <span th:errors="*{teacherFirstName}"></span>
+        <label th:for="teacherFirstName">First name</label>
+        <input th:field="${teacher.teacherFirstName}"/>
+    </div>
+    <div>
+        <span th:errors="*{teacherMiddleInitial}"></span>
+        <label th:for="teacherMiddleInitial"> Middle Initial</label>
+        <input th:field="${teacher.teacherMiddleInitial}"/>
+    </div>
 
-    <span th:errors="*{teacherMiddleInitial}"></span>
-    <label th:for="teacherMiddleInitial"> Middle Initial</label>
-    <input th:field="${teacher.teacherMiddleInitial}"/>
+    <div>
+        <span th:errors="*{teacherLastName}"></span>
+        <label th:for="teacherLastName"></label>
+        <input th:field="${teacher.teacherLastName}"/>
+    </div>
 
-    <span th:errors="*{teacherLastName}"></span>
-    <label th:for="teacherLastName"></label>
-    <input th:field="${teacher.teacherLastName}"/>
     <button>Submit</button>
 </form>
 </body>

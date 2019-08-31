@@ -47,4 +47,8 @@ public class StudentService {
         student.setStudentLastName(lName);
         studentRepository.save(student);
     }
+    public List<Student> teacherStudents (int id)
+    {
+      return studentRepository.allTeacherStudents(id);
+    }
 }
