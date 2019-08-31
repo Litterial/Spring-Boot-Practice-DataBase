@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>delete</h1>
+<h1 th:object="${teacher}">Are you sure you want to delete
+    <span th:text="*{title.prefix}"></span>
+    <span th:text="*{teacherFirstName}"></span>
+    <span th:if="*{teacherMiddleInitial !=  null}" th:text="*{teacherMiddleInitial}"></span>
+    <span th:text="*{teacherLastName}"></span>?
+</h1>
+<div th:if="${students.size()>0}">
+    <h1>The following students will also be deleted:</h1>
+    <ul th:each="student:${students}">
+        <li>
+            <span th:text="*{student.studentFirstName}"></span>
+            <span th:if="*{student.studentMiddleInitial!=  null}" th:text="*{student.studentMiddleInitial}"></span>
+            <span th:text="*{student.studentLastName}"></span>
+        </li>
+
+    </ul>
+</div>
+
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 
 import javax.jws.WebParam;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.validation.Errors;
@@ -105,6 +106,7 @@ public class TeacherController {
             return "noMatch";
         model.addAttribute("teacher",teacherService.findTeacher(id));
         model.addAttribute("students",studentService.teacherStudents(id));
+        System.out.println(studentService.teacherStudents(id).size());
 
         return "teacher/delete";
     }
