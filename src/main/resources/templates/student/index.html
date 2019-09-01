@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Welcome Students</h1>
+<h1 th:if="${student.size()<1}">No students</h1>
+<h1 th:if="${student.size()>0}">Welcome Students</h1>
+
+<ul th:each="students : ${student}">
+    <li>
+        <span th:text="${students.studentFirstName}"></span>
+        <span th:if="${students.studentMiddleInitial != null}" th:text="${students.studentMiddleInitial}"></span>
+        <span th:text="${students.studentLastName}"></span>
+    </li>
+
+</ul>
 </body>
 </html>

@@ -93,5 +93,16 @@ public class StudentController {
         }
         return"student/success";
     }
+    @RequestMapping(value="delete/{id}",method = RequestMethod.GET)
+    public String deleteStudent(Model model, @PathVariable int id) {
+        model.addAttribute("entry", "students");
+        if (!studentService.existStudent(id))
+            return "noMatch";
+        model.addAttribute("student",studentService.findStudent(id));
+
+
+        return "student/delete";
+    }
+
 }
 

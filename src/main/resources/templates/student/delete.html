@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:object="${student}">Are you sure you want to delete
+    <span th:text="*{studentFirstName}"></span>
+    <span th:if="*{studentMiddleInitial !=  null}" th:text="*{studentMiddleInitial}"></span>
+    <span th:text="*{studentFirstName}"></span>?
+</h1>
+<form th:method="POST">
+    <button>Submit</button>
+</form>
+<button><a th:href="@{/students}">Cancel</a></button>
+</body>
+</html>
