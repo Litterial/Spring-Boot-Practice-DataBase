@@ -31,6 +31,8 @@ public class TeacherController {
     @RequestMapping(value="")
     public String Teachers (Model model)
     {
+        model.addAttribute("title","List of teachers");
+
         model.addAttribute("teachers",teacherService.allTeachers());
         System.out.println(teacherService.allTeachers());
 
@@ -39,6 +41,7 @@ public class TeacherController {
     @RequestMapping(value="add", method = RequestMethod.GET)
     public String addTeacher (Model model)
     {
+        model.addAttribute("title","Add teacher");
         model.addAttribute("teacherTitle", Title.values());
         model.addAttribute("teacher",new Teacher());
 
@@ -48,6 +51,7 @@ public class TeacherController {
     @RequestMapping(value="add", method = RequestMethod.POST)
     public String submitTeacher (@Valid Teacher teacher, Errors err, Model model)
     {
+        model.addAttribute("title","Add teacher");
         System.out.println("TeacherController");
         if (err.hasErrors())
         {
@@ -61,15 +65,17 @@ public class TeacherController {
         System.out.println(teacher);
         teacherService.createTeacher(teacher);
 
-        return "teacher/success";
+        return "redirect:../";
     }
     @RequestMapping(value="edit/{id}",method = RequestMethod.GET)
     public String editTeacherForm (Model model, @PathVariable int id)
     {
+        model.addAttribute("title","No Match");
         model.addAttribute("entry","teachers");
         if (!teacherService.existTeacher(id))
-            return "teacher/noMatch";
+            return "index/noMatch";
 
+        model.addAttribute("title","Edit teacher");
         model.addAttribute("teacher",teacherService.findTeacher(id));
         model.addAttribute("allTitles",Title.values());
         return "teacher/edit";
@@ -78,11 +84,13 @@ public class TeacherController {
     @RequestMapping(value="edit/{id}",method = RequestMethod.POST)
     public String submitEditTeacher(@Valid Teacher teacher, Errors err, Model model, @PathVariable int id, HttpServletRequest request)
     {
+        model.addAttribute("title","No Match");
         model.addAttribute("entry","teachers");
         if (!teacherService.existTeacher(id))
-            return "noMatch";
+            return "index/noMatch";
 
         else if(err.hasErrors()) {
+            model.addAttribute("title","Edit teacher");
             model.addAttribute("teacher",teacher);
             model.addAttribute("allTitles",Title.values());
             return "teacher/edit";
@@ -96,15 +104,18 @@ public class TeacherController {
             String last=request.getParameter("teacherLastName");
             teacherService.updateTeacher(title,first,mid,last,id);
         }
-        return "teacher/success";
+        return "redirect../";
 
 
     }
     @RequestMapping(value="delete/{id}",method = RequestMethod.GET)
     public String deleteTeacher(Model model, @PathVariable int id) {
+        model.addAttribute("title","No Match");
         model.addAttribute("entry", "teachers");
         if (!teacherService.existTeacher(id))
-            return "noMatch";
+            return "index/noMatch";
+
+        model.addAttribute("title","Delete teacher");
         model.addAttribute("teacher",teacherService.findTeacher(id));
         model.addAttribute("students",studentService.teacherStudents(id));
         System.out.println(studentService.teacherStudents(id).size());
@@ -113,8 +124,10 @@ public class TeacherController {
     } @RequestMapping(value="delete/{id}", method=RequestMethod.POST)
     public String deletedTeacher(Model model, @PathVariable int id)
     {
+        model.addAttribute("title","No Match");
         if (!teacherService.existTeacher(id))
-            return "noMatch";
+            return "index/noMatch";
+
         teacherService.deleteTeacherRepo(id);
         return "redirect:../";
     }

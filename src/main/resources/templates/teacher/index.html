@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="fragement :: heading"></head>
+
 <body>
 <h1 th:if="${teachers.size()>0}">List of Teachers</h1>
 <h1 th:unless="${teachers.size()>0}">No teachers available</h1>

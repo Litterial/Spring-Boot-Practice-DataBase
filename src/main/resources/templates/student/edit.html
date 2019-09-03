@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="fragement :: heading"></head>
+
 <body>
 <h1>edit student</h1>
 <form th:method="POST" th:object="${student}">
