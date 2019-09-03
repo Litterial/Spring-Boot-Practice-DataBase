@@ -32,6 +32,7 @@ public class TeacherController {
     public String Teachers (Model model)
     {
         model.addAttribute("teachers",teacherService.allTeachers());
+        System.out.println(teacherService.allTeachers());
 
         return "teacher/index";
     }
@@ -114,7 +115,7 @@ public class TeacherController {
     {
         if (!teacherService.existTeacher(id))
             return "noMatch";
-        studentService.deleteStudentFromRepo(id);
+        teacherService.deleteTeacherRepo(id);
         return "redirect:../";
     }
 

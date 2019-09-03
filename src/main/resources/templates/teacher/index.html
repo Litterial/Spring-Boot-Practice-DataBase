@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<h1 th:if="${teachers.size>0}">List of Teachers</h1>
-<h1 th:unless="${teachers.size()==0}">No teachers available</h1>
+<h1 th:if="${teachers.size()>0}">List of Teachers</h1>
+<h1 th:unless="${teachers.size()>0}">No teachers available</h1>
 <div th:each="teach: ${teachers}">
     <span th:text="${teach.title.prefix}"></span>
     <span th:text="${teach.teacherFirstName}"></span>
