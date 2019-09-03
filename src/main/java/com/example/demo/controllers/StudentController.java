@@ -40,7 +40,7 @@ public class StudentController {
         model.addAttribute("title","No Match");
         model.addAttribute("entry","teachers");
         if(!teacherService.existTeacher(id)) {
-            return "index/noMatch";
+            return "base/noMatch";
         }
         model.addAttribute("title","Add student");
         model.addAttribute("student",new Student());
@@ -54,7 +54,7 @@ public class StudentController {
         model.addAttribute("title","No Match");
         model.addAttribute("entry","teachers");
         if(!teacherService.existTeacher(id))
-            return "index/noMatch";
+            return "base/noMatch";
 
         model.addAttribute("title","Add student");
         if (err.hasErrors()) {
@@ -72,7 +72,7 @@ public class StudentController {
         model.addAttribute("title","No Match");
         model.addAttribute("entry","students");
         if(!studentService.existStudent(id))
-            return "index/noMatch";
+            return "base/noMatch";
 
         model.addAttribute("title","Edit Student");
         model.addAttribute("student",studentService.findStudent(id));
@@ -85,7 +85,7 @@ public class StudentController {
         model.addAttribute("title","No Match");
         model.addAttribute("entry","students");
         if(!studentService.existStudent(id))
-            return "index/noMatch";
+            return "base/noMatch";
 
         else if (err.hasErrors())
         {
@@ -107,7 +107,7 @@ public class StudentController {
         model.addAttribute("title","No Match");
         model.addAttribute("entry", "students");
         if (!studentService.existStudent(id))
-            return "index/noMatch";
+            return "base/noMatch";
 
         model.addAttribute("title","Delete Student");
         model.addAttribute("student",studentService.findStudent(id));
@@ -121,7 +121,7 @@ public class StudentController {
     {
         model.addAttribute("title","No Match");
         if (!studentService.existStudent(id))
-            return "index/noMatch";
+            return "base/noMatch";
         studentService.deleteStudentFromRepo(id);
         return "redirect:../";
     }

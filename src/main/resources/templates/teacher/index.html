@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragement :: heading"></head>
 
+<head th:replace="./fragment/fragment :: heading"></head>
 <body>
 <h1 th:if="${teachers.size()>0}">List of Teachers</h1>
 <h1 th:unless="${teachers.size()>0}">No teachers available</h1>

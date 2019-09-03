@@ -11,6 +11,6 @@ public class IndexController {
     public String index(Model model)
     {
         model.addAttribute("title","Home Page");
-        return "index/index";
+        return "base/index";
     }
 }

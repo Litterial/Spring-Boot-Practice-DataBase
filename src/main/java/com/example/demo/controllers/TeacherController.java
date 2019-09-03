@@ -73,7 +73,7 @@ public class TeacherController {
         model.addAttribute("title","No Match");
         model.addAttribute("entry","teachers");
         if (!teacherService.existTeacher(id))
-            return "index/noMatch";
+            return "base/noMatch";
 
         model.addAttribute("title","Edit teacher");
         model.addAttribute("teacher",teacherService.findTeacher(id));
@@ -87,7 +87,7 @@ public class TeacherController {
         model.addAttribute("title","No Match");
         model.addAttribute("entry","teachers");
         if (!teacherService.existTeacher(id))
-            return "index/noMatch";
+            return "base/noMatch";
 
         else if(err.hasErrors()) {
             model.addAttribute("title","Edit teacher");
@@ -113,7 +113,7 @@ public class TeacherController {
         model.addAttribute("title","No Match");
         model.addAttribute("entry", "teachers");
         if (!teacherService.existTeacher(id))
-            return "index/noMatch";
+            return "base/noMatch";
 
         model.addAttribute("title","Delete teacher");
         model.addAttribute("teacher",teacherService.findTeacher(id));
@@ -126,7 +126,7 @@ public class TeacherController {
     {
         model.addAttribute("title","No Match");
         if (!teacherService.existTeacher(id))
-            return "index/noMatch";
+            return "base/noMatch";
 
         teacherService.deleteTeacherRepo(id);
         return "redirect:../";
