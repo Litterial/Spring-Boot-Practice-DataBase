@@ -52,4 +52,9 @@ public class StudentService {
       return studentRepository.allTeacherStudents(id);
     }
 
+    public void deleteStudentFromRepo (int id)
+    {
+        Student student=findStudent(id);
+        studentRepository.delete(student);
+    }
 }

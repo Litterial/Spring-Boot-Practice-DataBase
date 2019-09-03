@@ -109,5 +109,13 @@ public class TeacherController {
         System.out.println(studentService.teacherStudents(id).size());
 
         return "teacher/delete";
+    } @RequestMapping(value="delete/{id}", method=RequestMethod.POST)
+    public String deletedTeacher(Model model, @PathVariable int id)
+    {
+        if (!teacherService.existTeacher(id))
+            return "noMatch";
+        studentService.deleteStudentFromRepo(id);
+        return "redirect:../";
     }
+
 }

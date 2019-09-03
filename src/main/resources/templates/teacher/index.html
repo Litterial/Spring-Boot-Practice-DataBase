@@ -5,13 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<h1>List of Teachers</h1>
-<div th:each="teacher: ${teachers}">
-    <span th:text="${teacher.title.prefix}"></span>
-    <span th:text="${teacher.teacherFirstName}"></span>
-    <span th:text="${teacher.teacherMiddleInitial}"></span>
-    <span th:text="${teacher.teacherLastName}"></span>
-    <a th:href="@{'../students/addStudent/' + ${teacher.teacherId}}">Add Student</a>
+<h1 th:if="${teachers.size>0}">List of Teachers</h1>
+<h1 th:unless="${teachers.size()==0}">No teachers available</h1>
+<div th:each="teach: ${teachers}">
+    <span th:text="${teach.title.prefix}"></span>
+    <span th:text="${teach.teacherFirstName}"></span>
+    <span th:text="${teach.teacherMiddleInitial}"></span>
+    <span th:text="${teach.teacherLastName}"></span>
+    <a th:href="@{'../students/addStudent/' + ${teach.teacherId}}">Add Student</a>
 
 </div>
 

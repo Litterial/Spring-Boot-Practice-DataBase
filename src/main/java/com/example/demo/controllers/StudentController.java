@@ -94,7 +94,7 @@ public class StudentController {
         return"student/success";
     }
     @RequestMapping(value="delete/{id}",method = RequestMethod.GET)
-    public String deleteStudent(Model model, @PathVariable int id) {
+    public String deleteStudentForm(Model model, @PathVariable int id) {
         model.addAttribute("entry", "students");
         if (!studentService.existStudent(id))
             return "noMatch";
@@ -104,5 +104,13 @@ public class StudentController {
         return "student/delete";
     }
 
+    @RequestMapping(value="delete/{id}", method=RequestMethod.POST)
+    public String deletedStudent(Model model, @PathVariable int id)
+    {
+        if (!studentService.existStudent(id))
+            return "noMatch";
+        studentService.deleteStudentFromRepo(id);
+        return "redirect:../";
+    }
 }
 

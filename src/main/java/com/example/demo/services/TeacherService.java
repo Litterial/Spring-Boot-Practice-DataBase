@@ -9,6 +9,7 @@ import com.example.demo.models.Teacher;
 import com.example.demo.models.Title;
 @Service
 public class TeacherService {
+
     @Autowired
     private TeacherRepository teacherRepo;
 
@@ -49,6 +50,11 @@ public class TeacherService {
         teacherRepo.save(teacher);
     }
 
+    public void deleteTeacherRepo(int id)
+    {
+        Teacher teacher = findTeacher(id);
+        teacherRepo.delete(teacher);
+    }
 
 
 }
