@@ -1,0 +1,12 @@
+.loginPage
+{
+    display:grid;
+    grid-template-columns: 6fr 4fr;
+
+}
+
+.loginPage .image
+{
+    background: linear-gradient(#ac72d2,#bf6695);
+    height: 100%;
+}
