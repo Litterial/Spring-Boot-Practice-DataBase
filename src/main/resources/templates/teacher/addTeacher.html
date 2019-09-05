@@ -6,13 +6,13 @@
 <div class="image">
     kTesting
 </div>
-<form method="post" th:object="${teacher}">
+<form class="loginForm" method="post" th:object="${teacher}">
 
-    <div th:class="field">
-        <label th:for="title">Title</label>
+    <div class="field">
+        <label class="label" th:for="title">Title</label>
             <span th:errors="*{title}"></span>
-                <div th:class="control">
-                    <div th:class="select">
+                <div class="control">
+                    <div class="select">
                         <select  th:field="*{title}" required>
                             <option value="">Title</option>
                             <!--  teacherTitle was the name of the key-value pair that holds all of the values for the title selections -->
@@ -25,30 +25,30 @@
 
     </div>
 
-    <div th:class="field">
-        <label th:for="teacherFirstName">First Name</label>
+    <div class="field">
+        <label class="label" th:for="teacherFirstName">First Name</label>
             <span th:errors="*{teacherFirstName}"></span>
-            <div th:class="control">
-                <input th:field="*{teacherFirstName}">
+            <div class="control">
+                <input class="input name" th:field="*{teacherFirstName}" placeholder="First Name">
             </div>
     </div>
 
     <div th:class="field">
-        <label th:for="teacherMiddleInitial">Middle Intial</label>
+        <label class="label" th:for="teacherMiddleInitial">Middle Initial</label>
         <span th:errors="*{teacherMiddleInitial}"></span>
         <div th:class="control">
-            <input th:field="*{teacherMiddleInitial}">
+            <input class="input middle" th:field="*{teacherMiddleInitial}" placeholder="Initial">
         </div>
     </div>
 
     <div th:class="field">
-        <label th:for="teacherLastName">Last Name</label>
+        <label class="label" th:for="teacherLastName">Last Name</label>
         <span th:errors="*{teacherLastName}"></span>
         <div th:class="control">
-            <input th:field="*{teacherLastName}">
+            <input class="input name" th:field="*{teacherLastName}" placeholder="Last Name">
         </div>
     </div>
-    <button>Submit</button>
+    <button class="button is-link">Submit</button>
 </form>
 
 </body>

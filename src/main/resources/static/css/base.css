@@ -1,3 +1,9 @@
+
+html,body
+{
+    height: 100vh;
+}
+
 .loginPage
 {
     display:grid;
@@ -9,4 +15,23 @@
 {
     background: linear-gradient(#ac72d2,#bf6695);
     height: 100%;
+
+}
+
+.loginForm
+{
+    padding: 5%;
+    background:yellow;
+}
+
+.control .middle
+{
+    max-width:10%;
+    min-width: 75px;
+}
+
+.control .name
+{
+    max-width: 50%;
+    min-width:100px;
 }
